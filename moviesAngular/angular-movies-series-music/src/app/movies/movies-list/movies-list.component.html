@@ -1,3 +1,13 @@
-<ul>
-  <li>{{movie}}</li>
+<h2>My Movies</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <span class="badge">{{movie.idMovie}}</span> {{movie.name}}
+  </li>
 </ul>
+
+
+
+
+<h2>{{movie.name | uppercase}} Details</h2>
+<div><span>id: </span>{{movie.idMovie}}</div>
+<div><span>name: </span>{{movie.name}}</div>

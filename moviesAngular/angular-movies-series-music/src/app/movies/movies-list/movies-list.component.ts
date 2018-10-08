@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Movie} from '../movie';
+import {MOVIES} from '../mock-movies';
 
 @Component({
   selector: 'app-movies-list',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MoviesListComponent implements OnInit {
 
-  movie = 'It';
+  movie : Movie = {
+    idMovie: '5b96edcf4087542e5c9de569',
+    name: 'The ring'
+  };
+
+  movies = MOVIES;
 
   constructor() { }
 

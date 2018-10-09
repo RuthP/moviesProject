@@ -1,13 +1,11 @@
 <h2>My Movies</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <span class="badge">{{movie.idMovie}}</span> {{movie.name}}
+  <li *ngFor="let mov of movies"
+      [class.selected]="mov === selectedMovie"
+      (click)="onSelect(mov)">
+    <span class="badge">{{mov.idMovie}}</span> {{mov.name}}
   </li>
 </ul>
 
+<app-movie-details [movie]="selectedMovie"></app-movie-details>
 
-
-
-<h2>{{movie.name | uppercase}} Details</h2>
-<div><span>id: </span>{{movie.idMovie}}</div>
-<div><span>name: </span>{{movie.name}}</div>

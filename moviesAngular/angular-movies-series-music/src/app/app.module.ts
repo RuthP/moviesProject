@@ -6,6 +6,8 @@ import {MoviesModule} from './movies/movies.module';
 import {MusicModule} from './music/music.module';
 import {SeriesModule} from './series/series.module';
 import {DiscsModule} from './discs/discs.module';
+import {HttpClientModule} from '@angular/common/http';
+import {UiModule} from './ui/ui.module';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {DiscsModule} from './discs/discs.module';
     MoviesModule,
     MusicModule,
     SeriesModule,
-    DiscsModule
+    DiscsModule,
+    HttpClientModule,
+    UiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

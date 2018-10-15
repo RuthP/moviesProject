@@ -28,23 +28,41 @@ export class MovieService {
     //noinspection TypeScriptValidateTypes
     return this.http.get<Movie[]>(this.moviesUrl, httpOptions)
       .pipe(
-        tap(movies => this.log('fetched movies')),
-        catchError(this.handleError('getMovies',[]))
+        tap(movies => this.log('fetched movies'))//,
+        //catchError(this.handleError('getMovies',[]))
       );
     /*this.messageService.add('MovieService: fetched movies');
     return of (MOVIES);*/
   }
 
+  getMovie(id: string): Observable<Movie> {
+    const url = `${this.moviesUrl}/${id}`;
+    return this.http.get<Movie>(url).pipe(
+      tap(_=> this.log(`fetched movie id=${id}`))//,
+      //catchError(this.handleError<Movie>('getMovie id=${id}'))
+    );
+
+  }
+
+  updateMovie(movie: Movie): Observable<any> {
+      return this.http.put(this.moviesUrl,movie,httpOptions).pipe(
+        tap(_ => this.log(`updated movie id=${movie.idMovie}`))//,
+        //catchError(this.handleError<any>('updateMovie'))
+      );
+  }
+
+  addMovie(movie: Movie): Observable<Movie> {
+      return this.http.post(this.moviesUrl,movie,httpOptions).pipe(
+        tap((movie: Movie) => this.log(`added movie w/ id=$movie.idMovie}`))//,
+        //catchError(this.handleError<Movie>('addMovie'))
+      );
+  }
+
+
   private log (message: string){
       this.messageService.add(`MovieService: ${message}`)
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

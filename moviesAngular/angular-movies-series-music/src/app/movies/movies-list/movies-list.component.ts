@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Movie} from '../movie';
 import {MovieService} from '../movie.service';
+import {ModalService} from '../../modal.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -9,16 +10,14 @@ import {MovieService} from '../movie.service';
 })
 export class MoviesListComponent implements OnInit {
 
-    /*movie : Movie = {
-      idMovie: '5b96edcf4087542e5c9de569',
-      name: 'The ring'
-    };*/
-
     movies: Movie[];
 
     selectedMovie : Movie;
 
-    constructor(private movieService: MovieService) { }
+    constructor(
+      private movieService: MovieService,
+      private modalService: ModalService
+    ) { }
 
     ngOnInit() {
       this.getMovies();
@@ -31,6 +30,16 @@ export class MoviesListComponent implements OnInit {
     getMovies(): void {
       this.movieService.getMovies()
         .subscribe(movies => this.movies = movies);
+    }
+
+    openDetails(name: string, id: string): void{
+      console.log('1' + id);
+      this.modalService.open(name);
+      this.movieService.setMovieId(id);
+    }
+
+    getMovieById (id : string){
+      return this.movieService.getMovie(id);
     }
 
 

@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [MoviesComponent, MovieComponent, AddMovieComponent, EditMovieComponent, MoviesListComponent, MovieDetailsComponent, MovieSearchComponent],
-  declarations: [MoviesComponent, MovieComponent, AddMovieComponent, EditMovieComponent, MoviesListComponent, MovieDetailsComponent, MovieSearchComponent]
+  declarations: [MoviesComponent, MovieComponent, AddMovieComponent, EditMovieComponent, MoviesListComponent, MovieDetailsComponent, MovieSearchComponent],
+  entryComponents: [MovieDetailsComponent]
 })
 export class MoviesModule { }

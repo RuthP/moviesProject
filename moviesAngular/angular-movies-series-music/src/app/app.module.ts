@@ -9,10 +9,16 @@ import {DiscsModule} from './discs/discs.module';
 import {HttpClientModule} from '@angular/common/http';
 import {UiModule} from './ui/ui.module';
 
+import { ModalComponent } from './modal/modal.component';
+//import {MovieDetailsComponent} from './movies/movie-details/movie-details.component';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModalComponent/*,
+    MovieDetailsComponent*/
   ],
   imports: [
     BrowserModule,
@@ -21,9 +27,13 @@ import {UiModule} from './ui/ui.module';
     SeriesModule,
     DiscsModule,
     HttpClientModule,
-    UiModule
+    UiModule,
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [NgbActiveModal],
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent
+   // ,MovieDetailsComponent
+  ]
 })
 export class AppModule { }

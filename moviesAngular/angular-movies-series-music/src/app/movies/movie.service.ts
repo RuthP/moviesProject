@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Movie} from './movie';
 import {MOVIES} from './mock-movies';
 import { Observable, of } from 'rxjs';
 import { MessageService } from '../message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Output} from '@angular/core';
+import {tap} from "rxjs/internal/operators";
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +21,9 @@ const httpOptions = {
 export class MovieService {
 
   private moviesUrl = 'http://localhost:9091/movies';
+
+  @Output() movieIdEmmiter: EventEmitter<string> = new EventEmitter();
+
 
   constructor(
     private http: HttpClient,
@@ -37,12 +42,20 @@ export class MovieService {
 
   getMovie(id: string): Observable<Movie> {
     const url = `${this.moviesUrl}/${id}`;
-    return this.http.get<Movie>(url).pipe(
-      tap(_=> this.log(`fetched movie id=${id}`))//,
+    console.log('4. '+url);
+    return this.http.get<Movie>(url,httpOptions).pipe(
+      tap(movie_=> this.log(`fetched movie id=${id}`))//,
       //catchError(this.handleError<Movie>('getMovie id=${id}'))
     );
 
+
   }
+
+  setMovieId(id: string) {
+    console.log('3. '+id);
+    this.movieIdEmmiter.emit(id);
+  }
+
 
   updateMovie(movie: Movie): Observable<any> {
       return this.http.put(this.moviesUrl,movie,httpOptions).pipe(

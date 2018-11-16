@@ -1,22 +1,26 @@
 <div class="row mt-30">
-    <div class="col-md-4 col-sm-6" *ngFor="let mov of movies"
-         [class.selected]="mov === selectedMovie"
-         (click)="onSelect(mov)">
+    <div class="col-md-4 col-sm-6" *ngFor="let movie of movies"
+         [class.selected]="movie === selectedMovie"
+         (click)="onSelect(movie)">
       <div class="card mb-4 box3">
         <img class="card-img-top" src="https://placeimg.com/640/480/nature" alt="Card image cap">
-        <h3 class="title" align="center">{{mov.name}}</h3>
+        <h3 class="title" align="center">{{movie.name}}</h3>
         <div class="box-content">
-          <h3 class="title">{{mov.name}}</h3>
+          <h3 class="title">{{movie.name}}</h3>
           <ul class="icon">
-            <div class="description"><span>Year: </span>{{mov.year}}</div>
-            <div class="description"><span>Gender: </span>{{mov.gender}}</div>
+            <div class="description"><span>Year: </span>{{movie.year}}</div>
+            <div class="description"><span>Gender: </span>{{movie.gender}}</div>
             <div class="description"><span>Disc: </span>1</div>
           </ul>
-          <button type="button" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#detailsMovie">View Details</button>
+          <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target=".animate" data-ui-class="a-zoom"
+                  (click)="openDetails('detailsMovie',movie.idMovie)">View Details</button>
         </div>
       </div>
     </div>
 </div>
 
-<app-movie-details [movie]="selectedMovie"></app-movie-details>
+<!--app-movie-details [movie]="selectedMovie"></app-movie-details-->
+
+
+
 

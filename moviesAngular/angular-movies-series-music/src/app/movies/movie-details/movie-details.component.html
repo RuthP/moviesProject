@@ -1,11 +1,27 @@
 <div *ngIf="movie">
-  <h2>{{movie.name | uppercase}} Details</h2>
-  <div><span>Year: </span>{{movie.year}}</div>
-  <div><span>Gender: </span>{{movie.gender}}</div>
-  <div><span>Disc: </span>1</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="movie.name" placeholder="name">
-    </label>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{movie.name | uppercase}} Details</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label>Year:</label>
+      <input type="text" class="form-control" [(ngModel)]="movie.year" id="yearMovie" placeholder="Enter year" name="yearMovie">
+    </div>
+    <div class="form-group">
+      <label>Gender:</label>
+      <input type="text" class="form-control" [(ngModel)]="movie.gender" id="genderMovie" placeholder="Enter gender" name="genderMovie">
+    </div>
+    <div class="form-group">
+      <label>Disc:</label>
+      <input type="text" class="form-control" id="discMovie" placeholder="Enter disc" name="discMovie">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-info" (click)="modal.close('Ok click')">Save</button>
   </div>
 </div>

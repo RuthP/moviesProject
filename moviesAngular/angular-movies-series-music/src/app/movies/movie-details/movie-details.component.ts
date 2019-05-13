@@ -10,32 +10,36 @@ import {MovieService} from '../movie.service';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  movie: Movie;
+    movie: Movie;
 
-  movieId: string;
+    movieId: string;
 
-  constructor(
-    private movieService: MovieService,
-    public modal: NgbActiveModal
-  ) {
+    constructor(
+      private movieService: MovieService,
+      public modal: NgbActiveModal
+    ) {
 
-    console.log('2. on init');
-    this.movieService.movieIdEmmiter.subscribe(movieId => {
-      this.movieId = movieId;
+      console.log('2. on init');
+      this.movieService.movieIdEmmiter.subscribe(movieId => {
+        this.movieId = movieId;
 
-      console.log('subscripcion');
-    });
-  }
+        console.log('subscripcion');
+      });
+    }
 
-  ngOnInit() {
-    this.getMovieById(this.movieId);
-  }
+    ngOnInit() {
+      this.getMovieById(this.movieId);
+    }
 
-  getMovieById(id: string) : void {
-    this.movieService.getMovie(id)
-      .subscribe(movie => {this.movie = movie; console.log('5. '+this.movie);});
+    getMovieById(id: string) : void {
+      this.movieService.getMovie(id)
+        .subscribe(movie => {this.movie = movie; console.log('5. '+this.movie);});
 
-  }
+    }
+
+    changeImage(){
+
+    }
 
 
 

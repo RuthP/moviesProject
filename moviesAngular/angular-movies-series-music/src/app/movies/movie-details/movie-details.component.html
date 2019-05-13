@@ -19,6 +19,21 @@
       <label>Disc:</label>
       <input type="text" class="form-control" id="discMovie" placeholder="Enter disc" name="discMovie">
     </div>
+    <div class="input-group image-preview">
+      <input type="text" class="form-control image-preview-filename" disabled="disabled">
+      <span  class="input-group-btn">
+        <!-- image-preview-clear button -->
+        <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+            <span class="glyphicon glyphicon-remove"></span> Clear
+        </button>
+        <!-- image-preview-input -->
+        <div class="btn btn-default image-preview-input">
+            <span class="glyphicon glyphicon-folder-open"></span>
+            <span class="image-preview-input-title">Image</span>
+            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" (ngModelChange)="changeImage()"/>
+        </div>
+      </span>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
